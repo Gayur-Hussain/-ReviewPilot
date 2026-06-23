@@ -162,20 +162,6 @@ export default function PosterClient({ business, qrDataUrl }) {
               ))}
             </div>
           </div>
-
-          {/* Tips Card */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-3">
-            <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-              <Sparkles size={16} className="text-blue-500" />
-              Printing Tips
-            </h4>
-            <ul className="text-xs text-slate-600 space-y-2 list-disc pl-4">
-              <li>Use high-quality paper or cardstock for durability.</li>
-              <li>When the print dialog opens, set the layout to <strong>Portrait</strong>.</li>
-              <li>Enable <strong>Background graphics</strong> in print options to render theme colors properly.</li>
-              <li>Set margins to <strong>None</strong> for a full A4 bleed.</li>
-            </ul>
-          </div>
         </div>
 
         {/* Live Preview Pane */}

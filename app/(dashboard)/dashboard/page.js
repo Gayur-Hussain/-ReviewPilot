@@ -2,12 +2,10 @@ import { getAuthUser } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import { connectDB } from "@/lib/db"
 import Business from "@/models/Business"
-import Feedback from "@/models/Feedback"
 import { getBusinessAnalytics } from "@/lib/analytics"
 import Link from "next/link"
 import {
   QrCode,
-  MessageSquare,
   Eye,
   MousePointerClick,
   Sparkles,
@@ -30,13 +28,8 @@ export default async function DashboardPage() {
     redirect("/onboarding")
   }
 
-  // Fetch analytics and recent low-rating feedback
-  const [{ dailyStats, totals }, recentFeedbackRaw] = await Promise.all([
-    getBusinessAnalytics(business._id.toString()),
-    Feedback.find({ businessId: business._id }).sort({ createdAt: -1 }).limit(3).lean()
-  ])
-
-  const recentFeedback = JSON.parse(JSON.stringify(recentFeedbackRaw))
+  // Fetch analytics
+  const { dailyStats, totals } = await getBusinessAnalytics(business._id.toString())
 
   // Calculate conversions
   const clickThroughRate = totals.totalUniqueVisitors > 0
@@ -124,7 +117,6 @@ export default async function DashboardPage() {
             <p className="text-xs text-slate-500">Customers scan to review</p>
           </div>
           <div className="my-4 bg-white p-2.5 rounded-xl border border-slate-100 shadow-lg">
-            {/* Realtime QR code element */}
             <img
               src={`https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(
                 `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/r/${business.slug}?src=qr`
@@ -212,10 +204,10 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* Main Charts & Feedbacks Layout */}
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* Custom Daily Bar Chart (2/3 width) */}
-        <div className="lg:col-span-2 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      {/* Main Charts Layout */}
+      <div className="grid gap-6 lg:grid-cols-1">
+        {/* Custom Daily Bar Chart (Full Width) */}
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex justify-between items-center mb-6">
             <div>
               <h3 className="text-base font-bold text-slate-900">Daily Traffic & Routing</h3>
@@ -265,12 +257,12 @@ export default async function DashboardPage() {
                         {/* Scan bar */}
                         <div
                           style={{ height: `${scansHeight}%` }}
-                          className="w-2 bg-blue-500 hover:bg-blue-400 rounded-t transition-all duration-300"
+                          className="w-3 bg-blue-500 hover:bg-blue-400 rounded-t transition-all duration-300"
                         />
                         {/* Click bar */}
                         <div
                           style={{ height: `${clicksHeight}%` }}
-                          className="w-2 bg-emerald-500 hover:bg-emerald-400 rounded-t transition-all duration-300"
+                          className="w-3 bg-emerald-500 hover:bg-emerald-400 rounded-t transition-all duration-300"
                         />
                       </div>
                       <span className="text-[10px] text-slate-500 mt-2 truncate w-full text-center">
@@ -283,86 +275,7 @@ export default async function DashboardPage() {
             )}
           </div>
         </div>
-
-        {/* Recent Low-Rating Feedback (1/3 width) */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col justify-between">
-          <div>
-            <div className="flex justify-between items-center mb-6">
-              <div>
-                <h3 className="text-base font-bold text-slate-900">Private Feedbacks</h3>
-                <p className="text-xs text-slate-500 mt-0.5">Ratings (1-3★) stored privately</p>
-              </div>
-              <Link href="/dashboard/feedback" className="text-xs font-semibold text-blue-600 hover:underline">
-                View all
-              </Link>
-            </div>
-
-            <div className="space-y-4">
-              {recentFeedback.length === 0 ? (
-                <div className="py-12 text-center text-sm text-slate-500 border border-dashed border-slate-200 rounded-xl">
-                  No private feedback records yet.
-                </div>
-              ) : (
-                recentFeedback.map((fb, idx) => (
-                  <div key={idx} className="rounded-xl border border-slate-200 bg-slate-50 p-4 space-y-2.5">
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs font-bold text-slate-900 truncate max-w-[120px]">
-                        {fb.customerName || "Anonymous Customer"}
-                      </span>
-                      <div className="flex text-amber-500">
-                        {Array.from({ length: fb.rating }).map((_, i) => (
-                          <Star key={i} className="fill-amber-500 text-amber-500 h-3.5 w-3.5" />
-                        ))}
-                        {Array.from({ length: 3 - fb.rating }).map((_, i) => (
-                          <Star key={i} className="text-slate-300 h-3.5 w-3.5" />
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                      "{fb.message}"
-                    </p>
-
-                    <div className="flex flex-wrap items-center justify-between gap-1 text-[10px] text-slate-500 pt-1.5 border-t border-slate-200">
-                      <span>{fb.customerPhone || fb.customerEmail || "No contact info"}</span>
-                      <span>
-                        {new Date(fb.createdAt).toLocaleDateString('en-IN', {
-                          day: '2-digit',
-                          month: 'short'
-                        })}
-                      </span>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-
-          {recentFeedback.length > 0 && (
-            <Link
-              href="/dashboard/feedback"
-              className="w-full text-center py-2.5 mt-4 rounded-xl border border-slate-200 hover:bg-slate-50 text-xs font-semibold text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-1 cursor-pointer"
-            >
-              Manage all feedbacks
-              <ArrowRight size={12} />
-            </Link>
-          )}
-        </div>
       </div>
     </div>
-  )
-}
-
-function Star({ className, ...props }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className={className}
-      {...props}
-    >
-      <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
-    </svg>
   )
 }

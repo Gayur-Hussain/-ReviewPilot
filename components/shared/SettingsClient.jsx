@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { toast } from "sonner"
 import { updateBusiness } from "@/actions/business"
-import { ShieldCheck, Building2, Link2, Phone, MapPin, Loader2 } from "lucide-react"
+import { ShieldCheck, Building2, Link2, Phone, MapPin, Loader2, ExternalLink } from "lucide-react"
 
 export default function SettingsClient({ business }) {
   const [isPendingProfile, setIsPendingProfile] = useState(false)
@@ -198,12 +198,26 @@ export default function SettingsClient({ business }) {
             <p className="text-xs text-slate-600 leading-relaxed">
               This is the URL that your customers will visit when they scan the QR code. You can display it on flyers, menus, or receipts.
             </p>
-            <div className="rounded-xl bg-slate-50 p-3 border border-slate-200 break-all select-all font-mono text-[11px] text-blue-600 font-semibold">
-              {process.env.NEXT_PUBLIC_APP_URL
-                ? `${process.env.NEXT_PUBLIC_APP_URL}/r/${business.slug}`
-                : typeof window !== 'undefined'
-                  ? `${window.location.origin}/r/${business.slug}`
-                  : `/r/${business.slug}`}
+            <div className="rounded-xl bg-slate-50 p-3 border border-slate-200 break-all font-mono text-[11px] text-blue-600 font-semibold">
+              <a
+                href={process.env.NEXT_PUBLIC_APP_URL
+                  ? `${process.env.NEXT_PUBLIC_APP_URL}/r/${business.slug}`
+                  : typeof window !== 'undefined'
+                    ? `${window.location.origin}/r/${business.slug}`
+                    : `/r/${business.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline flex items-center justify-between gap-2"
+              >
+                <span>
+                  {process.env.NEXT_PUBLIC_APP_URL
+                    ? `${process.env.NEXT_PUBLIC_APP_URL}/r/${business.slug}`
+                    : typeof window !== 'undefined'
+                      ? `${window.location.origin}/r/${business.slug}`
+                      : `/r/${business.slug}`}
+                </span>
+                <ExternalLink size={12} className="inline shrink-0 text-blue-500 hover:text-blue-700" />
+              </a>
             </div>
           </div>
         </div>

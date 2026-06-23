@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
-  LayoutDashboard, MessageSquare, QrCode, Settings, X, LogOut,
+  LayoutDashboard, QrCode, Settings, X, LogOut,
   ChevronLeft, ChevronRight
 } from "lucide-react";
 import { useSidebar } from "@/context/SidebarContext";
@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils";
 
 export const NAV_LINKS = [
   { label: "Dashboard",       href: "/dashboard",            exact: true, icon: LayoutDashboard },
-  { label: "Low Ratings",     href: "/dashboard/feedback",                icon: MessageSquare },
   { label: "QR Poster",       href: "/dashboard/poster",                  icon: QrCode },
   { label: "Settings",        href: "/dashboard/settings",                icon: Settings },
 ];

@@ -2,15 +2,20 @@ import { connectDB } from "@/lib/db"
 import Business from "@/models/Business"
 import CustomerReviewFlow from "@/components/shared/CustomerReviewFlow"
 import { notFound } from "next/navigation"
+import { cache } from "react"
 
 export const dynamic = "force-dynamic"
+
+// Cache business database query to prevent duplicate requests during rendering
+const getBusinessBySlug = cache(async (slug) => {
+  await connectDB()
+  return await Business.findOne({ slug: slug.toLowerCase().trim() }).lean()
+})
 
 // Generate SEO metadata based on business slug
 export async function generateMetadata({ params }) {
   const { slug } = await params
-  await connectDB()
-
-  const business = await Business.findOne({ slug: slug.toLowerCase().trim() })
+  const business = await getBusinessBySlug(slug)
   if (!business) {
     return {
       title: "Business Not Found | ReviewPilot",
@@ -20,10 +25,10 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `Rate Our Service - ${business.name}`,
-    description: `Help us improve! Leave private feedback or draft an AI review for ${business.name}.`,
+    description: `Help us improve! Draft an AI review for ${business.name}.`,
     openGraph: {
       title: `Rate Our Service - ${business.name}`,
-      description: `Leave your feedback or Google review for ${business.name}.`,
+      description: `Leave your Google review for ${business.name}.`,
       type: "website",
     }
   }
@@ -31,9 +36,7 @@ export async function generateMetadata({ params }) {
 
 export default async function CustomerReviewPage({ params }) {
   const { slug } = await params
-  await connectDB()
-
-  const businessRaw = await Business.findOne({ slug: slug.toLowerCase().trim() }).lean()
+  const businessRaw = await getBusinessBySlug(slug)
   if (!businessRaw) {
     notFound()
   }
