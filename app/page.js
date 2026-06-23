@@ -16,21 +16,21 @@ export default function Home() {
 
       {/* Header */}
       <header className="relative z-10 border-b border-slate-200 bg-white/80 backdrop-blur-md top-0">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5 hover:opacity-95 transition">
-            <div className="h-8.5 w-8.5 rounded-lg bg-blue-600 flex items-center justify-center text-white font-black text-lg shadow shadow-blue-500/20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 min-h-16 py-3 flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+          <Link href="/" className="flex items-center gap-1.5 sm:gap-2.5 hover:opacity-95 transition">
+            <div className="h-7.5 w-7.5 sm:h-8.5 sm:w-8.5 rounded-lg bg-blue-600 flex items-center justify-center text-white font-black text-base sm:text-lg shadow shadow-blue-500/20">
               R
             </div>
-            <span className="text-lg font-bold tracking-tight text-slate-900">ReviewPilot</span>
+            <span className="text-base sm:text-lg font-bold tracking-tight text-slate-900">ReviewPilot</span>
           </Link>
 
-          <div className="flex items-center gap-3 sm:gap-6">
-            <Link href="/sign-in" className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition">
+          <div className="flex items-center gap-2.5 sm:gap-6">
+            <Link href="/sign-in" className="text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition">
               Sign In
             </Link>
             <Link
               href="/sign-up"
-              className="rounded-xl bg-blue-600 px-4 py-2 text-xs sm:text-sm font-bold text-white shadow shadow-blue-500/20 hover:bg-blue-500 transition-colors"
+              className="rounded-lg sm:rounded-xl bg-blue-600 px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs md:text-sm font-bold text-white shadow shadow-blue-500/20 hover:bg-blue-500 transition-colors"
             >
               Register Business
             </Link>
@@ -39,21 +39,20 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative z-10 max-w-5xl mx-auto text-center px-4 sm:px-6 pt-16 sm:pt-24 pb-20 space-y-8">
+      <section className="relative z-10 max-w-5xl mx-auto text-center px-4 sm:px-6 pt-16 sm:pt-24 pb-20 space-y-6 sm:space-y-8">
 
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] text-slate-900 max-w-4xl mx-auto">
+        <h1 className="text-3xl xs:text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] text-slate-900 max-w-4xl mx-auto">
           Get Genuine Google Reviews <br className="hidden sm:inline" />
           <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600">
             10x Faster with AI
           </span>
         </h1>
 
-        <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-sm sm:text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed px-2">
           ReviewPilot routes happy customers directly to Google Reviews with smart AI suggestions, while capturing constructive feedback privately to shield your public rating.
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4 max-w-md mx-auto">
-
           <Link
             href="/sign-in"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-8 py-3.5 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition"
@@ -64,61 +63,61 @@ export default function Home() {
         </div>
 
         {/* Live Flow Interactive Preview Mockup */}
-        <div className="pt-12 sm:pt-16 max-w-3xl mx-auto relative group">
+        <div className="pt-10 sm:pt-16 max-w-3xl mx-auto relative group">
           <div className="absolute inset-0 bg-blue-500/5 blur-3xl rounded-3xl" />
 
           <div className="relative rounded-2xl border border-slate-200 bg-white p-1 sm:p-2.5 shadow-xl">
-            <div className="rounded-xl border border-slate-100 bg-slate-50 p-5 sm:p-7 text-left space-y-6">
+            <div className="rounded-xl border border-slate-100 bg-slate-50 p-3.5 sm:p-7 text-left space-y-4 sm:space-y-6">
 
               {/* Mock Header */}
-              <div className="flex items-center justify-between pb-4 border-b border-slate-200">
-                <div className="flex items-center gap-3">
-                  <div className="h-8.5 w-8.5 rounded-lg bg-blue-55 border border-blue-205 flex items-center justify-center font-bold text-blue-600">
+              <div className="flex flex-col xs:flex-row xs:items-center justify-between gap-3 pb-4 border-b border-slate-200">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="h-8 w-8 sm:h-8.5 sm:w-8.5 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center font-bold text-blue-600 text-sm">
                     S
                   </div>
                   <div>
                     <h4 className="text-xs sm:text-sm font-bold text-slate-800">Spice & Stone Restaurant</h4>
-                    <p className="text-[10px] text-slate-500">Customer feedback portal</p>
+                    <p className="text-[9px] sm:text-[10px] text-slate-500">Customer feedback portal</p>
                   </div>
                 </div>
-                <span className="text-[10px] text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full font-semibold">Live Preview</span>
+                <span className="self-start xs:self-auto text-[9px] sm:text-[10px] text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full font-semibold">Live Preview</span>
               </div>
 
               {/* Steps Layout */}
-              <div className="grid gap-6 md:grid-cols-2">
+              <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
                 {/* Positives Route */}
-                <div className="rounded-xl border border-slate-200 bg-white p-5 space-y-4 shadow-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-emerald-600 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">4-5 Star Rating</span>
-                    <span className="text-[10px] text-slate-450">Google Redirect</span>
+                <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-5 space-y-3 sm:space-y-4 shadow-sm">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-[10px] sm:text-xs font-bold text-emerald-600 bg-emerald-50 border border-emerald-200 px-2 py-0.5 sm:px-2.5 rounded-full">4-5 Star Rating</span>
+                    <span className="text-[9px] sm:text-[10px] text-slate-400">Google Redirect</span>
                   </div>
-                  <h5 className="text-sm font-bold text-slate-800">AI Suggestion Drafts</h5>
-                  <div className="rounded-lg bg-slate-50 p-3 border border-slate-200 text-xs text-slate-700 leading-relaxed font-sans relative">
+                  <h5 className="text-xs sm:text-sm font-bold text-slate-800">AI Suggestion Drafts</h5>
+                  <div className="rounded-lg bg-slate-50 p-2.5 sm:p-3 border border-slate-200 text-[11px] sm:text-xs text-slate-700 leading-relaxed font-sans relative pr-8 pb-3">
                     {`Yahan ka khana aur service dono bahut hi badiya hain. Staff ka behavior cooperative tha, zaroor visit karein!`}
                     <div className="absolute bottom-2 right-2 h-5 w-5 rounded bg-white border border-slate-200 flex items-center justify-center text-[10px] text-slate-400">
                       <Copy size={10} />
                     </div>
                   </div>
-                  <div className="w-full text-center py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-xs font-bold text-white flex items-center justify-center gap-1 cursor-pointer">
+                  <div className="w-full text-center py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-[11px] sm:text-xs font-bold text-white flex items-center justify-center gap-1 cursor-pointer">
                     Submit on Google Review Page
                     <ArrowUpRight size={12} />
                   </div>
                 </div>
 
                 {/* Negatives Route */}
-                <div className="rounded-xl border border-slate-200 bg-white p-5 space-y-4 flex flex-col justify-between shadow-sm">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-rose-600 bg-rose-55 border border-rose-200 px-2.5 py-0.5 rounded-full">1-3 Star Rating</span>
-                      <span className="text-[10px] text-slate-450">Reputation Shield</span>
+                <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-5 space-y-3 sm:space-y-4 flex flex-col justify-between shadow-sm">
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className="text-[10px] sm:text-xs font-bold text-rose-600 bg-rose-50 border border-rose-200 px-2 py-0.5 sm:px-2.5 rounded-full">1-3 Star Rating</span>
+                      <span className="text-[9px] sm:text-[10px] text-slate-400">Reputation Shield</span>
                     </div>
-                    <h5 className="text-sm font-bold text-slate-800">Private Feedback Form</h5>
+                    <h5 className="text-xs sm:text-sm font-bold text-slate-800">Private Feedback Form</h5>
                     <div className="space-y-2">
-                      <div className="h-6.5 w-full bg-slate-50 border border-slate-200 rounded-md text-[10px] text-slate-400 flex items-center px-2.5">Your Name...</div>
-                      <div className="h-14 w-full bg-slate-50 border border-slate-200 rounded-md text-[10px] text-slate-400 pt-1.5 px-2.5">How can we improve?</div>
+                      <div className="py-1.5 px-2.5 w-full bg-slate-50 border border-slate-200 rounded-md text-[10px] text-slate-400 flex items-center">Your Name...</div>
+                      <div className="h-12 w-full bg-slate-50 border border-slate-200 rounded-md text-[10px] text-slate-400 pt-1.5 px-2.5">How can we improve?</div>
                     </div>
                   </div>
-                  <div className="w-full text-center py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold text-slate-500 cursor-pointer">
+                  <div className="w-full text-center py-2 bg-slate-50 border border-slate-200 rounded-lg text-[11px] sm:text-xs font-bold text-slate-500 cursor-pointer">
                     Send Privately to Owner
                   </div>
                 </div>
