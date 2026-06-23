@@ -4,18 +4,18 @@ import { Star, ShieldAlert, Sparkles, QrCode, TrendingUp, CheckCircle, ArrowRigh
 export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-600 selection:text-white relative overflow-hidden font-sans">
-      
+
       {/* Premium CSS Grid Backdrop */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-80 z-0" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-80 z-0" />
 
       {/* Decorative Radial Glowing Elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none overflow-hidden opacity-40 z-0">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-150 pointer-events-none overflow-hidden opacity-40 z-0">
         <div className="absolute top-[-20%] left-[10%] w-[60%] h-[60%] rounded-full bg-blue-100/70 blur-[130px]" />
         <div className="absolute top-[-10%] right-[10%] w-[50%] h-[50%] rounded-full bg-indigo-100/50 blur-[110px]" />
       </div>
 
       {/* Header */}
-      <header className="relative z-10 border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0">
+      <header className="relative z-10 border-b border-slate-200 bg-white/80 backdrop-blur-md top-0">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5 hover:opacity-95 transition">
             <div className="h-8.5 w-8.5 rounded-lg bg-blue-600 flex items-center justify-center text-white font-black text-lg shadow shadow-blue-500/20">
@@ -23,7 +23,7 @@ export default function Home() {
             </div>
             <span className="text-lg font-bold tracking-tight text-slate-900">ReviewPilot</span>
           </Link>
-          
+
           <div className="flex items-center gap-3 sm:gap-6">
             <Link href="/sign-in" className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition">
               Sign In
@@ -40,30 +40,20 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative z-10 max-w-5xl mx-auto text-center px-4 sm:px-6 pt-16 sm:pt-24 pb-20 space-y-8">
-        <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/50 px-4.5 py-1.5 text-xs text-blue-600 font-semibold shadow-sm">
-          <Sparkles size={14} className="animate-pulse text-blue-500" />
-          <span>Intelligent Local Reputation Software</span>
-        </div>
-        
+
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] text-slate-900 max-w-4xl mx-auto">
           Get Genuine Google Reviews <br className="hidden sm:inline" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600">
             10x Faster with AI
           </span>
         </h1>
-        
+
         <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
           ReviewPilot routes happy customers directly to Google Reviews with smart AI suggestions, while capturing constructive feedback privately to shield your public rating.
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4 max-w-md mx-auto">
-          <Link
-            href="/sign-up"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-500 transition cursor-pointer"
-          >
-            Start Free Trial
-            <ArrowRight size={16} />
-          </Link>
+
           <Link
             href="/sign-in"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-8 py-3.5 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition"
@@ -76,10 +66,10 @@ export default function Home() {
         {/* Live Flow Interactive Preview Mockup */}
         <div className="pt-12 sm:pt-16 max-w-3xl mx-auto relative group">
           <div className="absolute inset-0 bg-blue-500/5 blur-3xl rounded-3xl" />
-          
+
           <div className="relative rounded-2xl border border-slate-200 bg-white p-1 sm:p-2.5 shadow-xl">
             <div className="rounded-xl border border-slate-100 bg-slate-50 p-5 sm:p-7 text-left space-y-6">
-              
+
               {/* Mock Header */}
               <div className="flex items-center justify-between pb-4 border-b border-slate-200">
                 <div className="flex items-center gap-3">
@@ -104,7 +94,7 @@ export default function Home() {
                   </div>
                   <h5 className="text-sm font-bold text-slate-800">AI Suggestion Drafts</h5>
                   <div className="rounded-lg bg-slate-50 p-3 border border-slate-200 text-xs text-slate-700 leading-relaxed font-sans relative">
-                    "Yahan ka khana aur service dono bahut hi badiya hain. Staff ka behavior cooperative tha, zaroor visit karein!"
+                    {`Yahan ka khana aur service dono bahut hi badiya hain. Staff ka behavior cooperative tha, zaroor visit karein!`}
                     <div className="absolute bottom-2 right-2 h-5 w-5 rounded bg-white border border-slate-200 flex items-center justify-center text-[10px] text-slate-400">
                       <Copy size={10} />
                     </div>
@@ -151,7 +141,7 @@ export default function Home() {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          
+
           {/* Card 1 */}
           <div className="rounded-2xl border border-slate-200 bg-white p-6 flex flex-col justify-between group hover:border-blue-200 shadow-sm transition duration-200">
             <div className="space-y-4">
